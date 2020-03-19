@@ -112,6 +112,12 @@
   cursor: pointer;
 }
 
+.add-task-btn:hover {
+  background-color: #263d8a;
+  color: white;
+  cursor: pointer;
+}
+
 .list-item {
   display: flex;
   justify-content: space-between;
@@ -153,6 +159,12 @@
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   outline: none;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background-color: #263d8a;
+  color: white;
   cursor: pointer;
 }
 

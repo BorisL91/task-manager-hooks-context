@@ -1,16 +1,16 @@
-import React, { createContext, useState, useEffect } from 'react'
-import uuid from 'uuid'
+import React, { createContext, useState, useEffect } from "react"
+import uuid from "uuid"
 
 export const TaskListContext = createContext()
 
 const TaskListContextProvider = props => {
-  const initialState = JSON.parse(localStorage.getItem('tasks')) || []
+  const initialState = JSON.parse(localStorage.getItem("tasks")) || []
 
   const [tasks, setTasks] = useState(initialState)
   const [editItem, setEditItem] = useState(null)
 
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks))
+    localStorage.setItem("tasks", JSON.stringify(tasks))
   }, [tasks])
 
   const addTask = title => {
@@ -18,7 +18,11 @@ const TaskListContextProvider = props => {
   }
 
   const removeTask = id => {
-    setTasks(tasks.filter(task => task.id !== id))
+    setTasks(
+      tasks.filter(task => {
+        return task.id !== id
+      })
+    )
   }
 
   const clearList = () => {
