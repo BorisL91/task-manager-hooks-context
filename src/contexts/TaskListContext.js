@@ -3,7 +3,7 @@ import uuid from "uuid"
 
 export const TaskListContext = createContext()
 
-const TaskListContextProvider = props => {
+const TaskListContextProvider = (props) => {
   const initialState = JSON.parse(localStorage.getItem("tasks")) || []
 
   const [tasks, setTasks] = useState(initialState)
@@ -13,13 +13,13 @@ const TaskListContextProvider = props => {
     localStorage.setItem("tasks", JSON.stringify(tasks))
   }, [tasks])
 
-  const addTask = title => {
+  const addTask = (title) => {
     setTasks([...tasks, { title, id: uuid() }])
   }
 
-  const removeTask = id => {
+  const removeTask = (id) => {
     setTasks(
-      tasks.filter(task => {
+      tasks.filter((task) => {
         return task.id !== id
       })
     )
@@ -29,14 +29,16 @@ const TaskListContextProvider = props => {
     setTasks([])
   }
 
-  const findItem = id => {
-    const item = tasks.find(task => task.id === id)
+  const findItem = (id) => {
+    const item = tasks.find((task) => task.id === id)
 
     setEditItem(item)
   }
 
   const editTask = (title, id) => {
-    const newTasks = tasks.map(task => (task.id === id ? { title, id } : task))
+    const newTasks = tasks.map((task) =>
+      task.id === id ? { title, id } : task
+    )
     setTasks(newTasks)
     setEditItem(null)
   }
@@ -50,7 +52,7 @@ const TaskListContextProvider = props => {
         findItem,
         clearList,
         editTask,
-        editItem
+        editItem,
       }}
     >
       {props.children}
